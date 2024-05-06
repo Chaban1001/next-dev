@@ -1,33 +1,25 @@
 import styles from '@/styles/header.module.scss';
 import Link from 'next/link';
 import { FC } from 'react';
+import { NavBar } from '../NavBar/NavBar';
 
-const enum NavBarPaths {
-  HOME = '/',
-  ABOUT = '/pages/about',
-  BLOG = '/pages/blog',
+export interface Paths {
+  label: string;
+  href: string;
 }
+
+export const NavBarPaths: Paths[] = [
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '/pages/about' },
+  { label: 'Blog', href: '/pages/blog' },
+];
 
 const Header: FC = () => {
   return (
     <header className={styles.header}>
       <nav className={styles.header__headerNav}>
         <ul className={styles.menu}>
-          <li className={styles.menu__listItem}>
-            <Link href={NavBarPaths.HOME} className={styles.menu__listLink}>
-              Home
-            </Link>
-          </li>
-          <li className={styles.menu__listItem}>
-            <Link href={NavBarPaths.ABOUT} className={styles.menu__listLink}>
-              About
-            </Link>
-          </li>
-          <li className={styles.menu__listItem}>
-            <Link href={NavBarPaths.BLOG} className={styles.menu__listLink}>
-              Blog
-            </Link>
-          </li>
+          <NavBar navLinks={NavBarPaths} />
         </ul>
       </nav>
     </header>
